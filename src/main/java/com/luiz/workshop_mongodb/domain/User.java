@@ -2,16 +2,21 @@ package com.luiz.workshop_mongodb.domain;
 
 import java.io.Serializable;
 
-public class User implements Serializable{
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
+public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @Id
     private String id;
-    private String nome;
+    private String name;
     private String email;
 
-    public User(String id, String nome, String email) {
+    public User(String id, String name, String email) {
         this.id = id;
-        this.nome = nome;
+        this.name = name;
         this.email = email;
     }
 
@@ -23,12 +28,12 @@ public class User implements Serializable{
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getname() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setname(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
