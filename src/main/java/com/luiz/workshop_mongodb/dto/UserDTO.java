@@ -8,9 +8,12 @@ public class UserDTO {
     private String name;
     private String email;
 
+    public UserDTO(){
+    }
+
     public UserDTO(User obj){
         this.id = obj.getId();
-        this.name = obj.getname();
+        this.name = obj.getName();
         this.email = obj.getEmail();
     }
 
