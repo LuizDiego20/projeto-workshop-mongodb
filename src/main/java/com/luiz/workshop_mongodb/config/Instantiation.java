@@ -1,7 +1,6 @@
 package com.luiz.workshop_mongodb.config;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -12,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.luiz.workshop_mongodb.domain.Post;
 import com.luiz.workshop_mongodb.domain.User;
+import com.luiz.workshop_mongodb.dto.AuthorDTO;
 import com.luiz.workshop_mongodb.repositories.PostRepository;
 import com.luiz.workshop_mongodb.repositories.UserRepository;
 
@@ -36,10 +36,12 @@ public class Instantiation implements CommandLineRunner {
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
 
-        Post post1 = new Post(null, LocalDate.parse("21/03/2018", dtf).atTime(LocalTime.now()), "Bom dia", "Acordei feliz hoje!", maria);
-        Post post2 = new Post(null, LocalDate.parse("21/03/2018", dtf).atTime(LocalTime.now()), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", alex);
-
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
+        Post post1 = new Post(null, LocalDate.parse("21/03/2018", dtf).atTime(LocalTime.now()), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
+        Post post2 = new Post(null, LocalDate.parse("21/03/2018", dtf).atTime(LocalTime.now()), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(alex));
+
+        
         postRepository.saveAll(Arrays.asList(post1, post2));
     }
 
